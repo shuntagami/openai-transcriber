@@ -40,9 +40,3 @@ poetry run transcribe 音声ファイル.mp3
 poetry shell
 transcribe 音声ファイル.mp3
 ```
-
-## 注意事項
-
-- 音声ファイルは 25 分（1,500 秒）以下である必要があります
-- OpenAI API の使用には料金が発生します
-- このツールは、whisper-1、gpt-4o-mini-transcribe、gpt-4o-transcribe の 3 つのモデルで文字起こしを行い、結果を比較します
