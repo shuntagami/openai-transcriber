@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "openai-transcriber"
+version = "0.1.0"
+description = "MP3 transcription using OpenAI GPT-4o-transcribe"
+authors = ["shuntagami <shuntagami23@gmail.com>"]
+readme = "README.md"
+packages = [{include = "transcriber"}]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^1.69.0"
+python-dotenv = "^1.1.0"
+
+[tool.poetry.scripts]
+transcribe = "transcriber.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
