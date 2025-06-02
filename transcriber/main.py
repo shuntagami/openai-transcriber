@@ -8,6 +8,7 @@ from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 from pydub import AudioSegment
+import re
 
 def generate_output_filename(output_dir="transcripts"):
     """日時を含む一意のファイル名を生成する"""
@@ -124,13 +125,12 @@ def transcribe_with_models(audio_file_path, output_file=None, max_duration=1250)
                 )
 
                 # 結果を追加
-                full_transcription += transcription.text + "\n\n"
+                full_transcription += transcription.text + "\\n\\n"
 
-                # 結果をファイルに書き込む
+                # 結果を整形してファイルに書き込む
+                formatted_text = re.sub(r'([。！？.])', r'\\1\\n', transcription.text)
                 with open(output_file, 'a', encoding='utf-8') as f:
-                    if i > 0:
-                        f.write("\n--- セグメント区切り ---\n\n")
-                    f.write(transcription.text + "\n")
+                    f.write(formatted_text + "\\n") # 改行を追加したテキストを書き込む
                     f.flush()
 
         # 一時ファイルを削除（オリジナルファイルは除く）
